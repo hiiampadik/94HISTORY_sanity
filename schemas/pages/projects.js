@@ -1,9 +1,22 @@
-import {defineField} from 'sanity'
+import {defineArrayMember, defineField} from 'sanity'
 
 export default {
   name: "projects",
   title: "Projects",
   type: "document",
+
+
+  fieldsets: [
+    {
+      name: "info",
+      title: "Info",
+      options: {
+        collapsible: true, // Makes the whole fieldset collapsible
+        collapsed: false, // Defines if the fieldset should be collapsed by default or not
+        columns: 2, // Defines a grid for the fields and how many columns it should have
+      },
+    },
+  ],
 
   fields: [
     defineField({
@@ -46,8 +59,8 @@ export default {
     defineField({
       title: "Cover",
       name: "cover",
-      type: "image",
-      fieldset: "info",
+      type: "array",
+      of: [defineArrayMember({ type: 'image' })]
     }),
 
     defineField({
